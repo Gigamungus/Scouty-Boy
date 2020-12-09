@@ -1,0 +1,2 @@
+
+-DCATKIN_DEVEL_PREFIX=/home/ubuntu/project/Scouty-Boy/Simulation/devel -DCMAKE_INSTALL_PREFIX=/home/ubuntu/project/Scouty-Boy/Simulation/install -G Unix Makefiles
