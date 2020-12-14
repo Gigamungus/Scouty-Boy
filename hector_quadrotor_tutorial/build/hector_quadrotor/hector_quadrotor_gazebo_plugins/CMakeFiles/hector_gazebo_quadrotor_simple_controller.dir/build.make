@@ -119,15 +119,6 @@ hector_gazebo_quadrotor_simple_controller_EXTERNAL_OBJECTS =
 /home/ubuntu/project/Scouty-Boy/hector_quadrotor_tutorial/devel/lib/libhector_gazebo_quadrotor_simple_controller.so: /usr/lib/x86_64-linux-gnu/libprotobuf.so
 /home/ubuntu/project/Scouty-Boy/hector_quadrotor_tutorial/devel/lib/libhector_gazebo_quadrotor_simple_controller.so: /usr/lib/x86_64-linux-gnu/libsdformat.so
 /home/ubuntu/project/Scouty-Boy/hector_quadrotor_tutorial/devel/lib/libhector_gazebo_quadrotor_simple_controller.so: /usr/lib/x86_64-linux-gnu/libignition-math2.so
-/home/ubuntu/project/Scouty-Boy/hector_quadrotor_tutorial/devel/lib/libhector_gazebo_quadrotor_simple_controller.so: /usr/lib/x86_64-linux-gnu/libOgreMain.so
-/home/ubuntu/project/Scouty-Boy/hector_quadrotor_tutorial/devel/lib/libhector_gazebo_quadrotor_simple_controller.so: /usr/lib/x86_64-linux-gnu/libboost_thread.so
-/home/ubuntu/project/Scouty-Boy/hector_quadrotor_tutorial/devel/lib/libhector_gazebo_quadrotor_simple_controller.so: /usr/lib/x86_64-linux-gnu/libboost_date_time.so
-/home/ubuntu/project/Scouty-Boy/hector_quadrotor_tutorial/devel/lib/libhector_gazebo_quadrotor_simple_controller.so: /usr/lib/x86_64-linux-gnu/libboost_system.so
-/home/ubuntu/project/Scouty-Boy/hector_quadrotor_tutorial/devel/lib/libhector_gazebo_quadrotor_simple_controller.so: /usr/lib/x86_64-linux-gnu/libboost_atomic.so
-/home/ubuntu/project/Scouty-Boy/hector_quadrotor_tutorial/devel/lib/libhector_gazebo_quadrotor_simple_controller.so: /usr/lib/x86_64-linux-gnu/libboost_chrono.so
-/home/ubuntu/project/Scouty-Boy/hector_quadrotor_tutorial/devel/lib/libhector_gazebo_quadrotor_simple_controller.so: /usr/lib/x86_64-linux-gnu/libpthread.so
-/home/ubuntu/project/Scouty-Boy/hector_quadrotor_tutorial/devel/lib/libhector_gazebo_quadrotor_simple_controller.so: /usr/lib/x86_64-linux-gnu/libOgreTerrain.so
-/home/ubuntu/project/Scouty-Boy/hector_quadrotor_tutorial/devel/lib/libhector_gazebo_quadrotor_simple_controller.so: /usr/lib/x86_64-linux-gnu/libOgrePaging.so
 /home/ubuntu/project/Scouty-Boy/hector_quadrotor_tutorial/devel/lib/libhector_gazebo_quadrotor_simple_controller.so: /usr/lib/x86_64-linux-gnu/libignition-math2.so
 /home/ubuntu/project/Scouty-Boy/hector_quadrotor_tutorial/devel/lib/libhector_gazebo_quadrotor_simple_controller.so: /usr/lib/x86_64-linux-gnu/libgazebo.so
 /home/ubuntu/project/Scouty-Boy/hector_quadrotor_tutorial/devel/lib/libhector_gazebo_quadrotor_simple_controller.so: /usr/lib/x86_64-linux-gnu/libgazebo_client.so
@@ -150,9 +141,6 @@ hector_gazebo_quadrotor_simple_controller_EXTERNAL_OBJECTS =
 /home/ubuntu/project/Scouty-Boy/hector_quadrotor_tutorial/devel/lib/libhector_gazebo_quadrotor_simple_controller.so: /usr/lib/x86_64-linux-gnu/libprotobuf.so
 /home/ubuntu/project/Scouty-Boy/hector_quadrotor_tutorial/devel/lib/libhector_gazebo_quadrotor_simple_controller.so: /usr/lib/x86_64-linux-gnu/libsdformat.so
 /home/ubuntu/project/Scouty-Boy/hector_quadrotor_tutorial/devel/lib/libhector_gazebo_quadrotor_simple_controller.so: /usr/lib/x86_64-linux-gnu/libignition-math2.so
-/home/ubuntu/project/Scouty-Boy/hector_quadrotor_tutorial/devel/lib/libhector_gazebo_quadrotor_simple_controller.so: /usr/lib/x86_64-linux-gnu/libOgreMain.so
-/home/ubuntu/project/Scouty-Boy/hector_quadrotor_tutorial/devel/lib/libhector_gazebo_quadrotor_simple_controller.so: /usr/lib/x86_64-linux-gnu/libOgreTerrain.so
-/home/ubuntu/project/Scouty-Boy/hector_quadrotor_tutorial/devel/lib/libhector_gazebo_quadrotor_simple_controller.so: /usr/lib/x86_64-linux-gnu/libOgrePaging.so
 /home/ubuntu/project/Scouty-Boy/hector_quadrotor_tutorial/devel/lib/libhector_gazebo_quadrotor_simple_controller.so: /usr/lib/x86_64-linux-gnu/libignition-math2.so
 /home/ubuntu/project/Scouty-Boy/hector_quadrotor_tutorial/devel/lib/libhector_gazebo_quadrotor_simple_controller.so: /opt/ros/kinetic/lib/libtf.so
 /home/ubuntu/project/Scouty-Boy/hector_quadrotor_tutorial/devel/lib/libhector_gazebo_quadrotor_simple_controller.so: /opt/ros/kinetic/lib/libtf2_ros.so
@@ -201,9 +189,6 @@ hector_gazebo_quadrotor_simple_controller_EXTERNAL_OBJECTS =
 /home/ubuntu/project/Scouty-Boy/hector_quadrotor_tutorial/devel/lib/libhector_gazebo_quadrotor_simple_controller.so: /usr/lib/x86_64-linux-gnu/libboost_iostreams.so
 /home/ubuntu/project/Scouty-Boy/hector_quadrotor_tutorial/devel/lib/libhector_gazebo_quadrotor_simple_controller.so: /usr/lib/x86_64-linux-gnu/libprotobuf.so
 /home/ubuntu/project/Scouty-Boy/hector_quadrotor_tutorial/devel/lib/libhector_gazebo_quadrotor_simple_controller.so: /usr/lib/x86_64-linux-gnu/libsdformat.so
-/home/ubuntu/project/Scouty-Boy/hector_quadrotor_tutorial/devel/lib/libhector_gazebo_quadrotor_simple_controller.so: /usr/lib/x86_64-linux-gnu/libOgreMain.so
-/home/ubuntu/project/Scouty-Boy/hector_quadrotor_tutorial/devel/lib/libhector_gazebo_quadrotor_simple_controller.so: /usr/lib/x86_64-linux-gnu/libOgreTerrain.so
-/home/ubuntu/project/Scouty-Boy/hector_quadrotor_tutorial/devel/lib/libhector_gazebo_quadrotor_simple_controller.so: /usr/lib/x86_64-linux-gnu/libOgrePaging.so
 /home/ubuntu/project/Scouty-Boy/hector_quadrotor_tutorial/devel/lib/libhector_gazebo_quadrotor_simple_controller.so: /usr/lib/x86_64-linux-gnu/libgazebo.so
 /home/ubuntu/project/Scouty-Boy/hector_quadrotor_tutorial/devel/lib/libhector_gazebo_quadrotor_simple_controller.so: /usr/lib/x86_64-linux-gnu/libgazebo_client.so
 /home/ubuntu/project/Scouty-Boy/hector_quadrotor_tutorial/devel/lib/libhector_gazebo_quadrotor_simple_controller.so: /usr/lib/x86_64-linux-gnu/libgazebo_gui.so
@@ -225,9 +210,6 @@ hector_gazebo_quadrotor_simple_controller_EXTERNAL_OBJECTS =
 /home/ubuntu/project/Scouty-Boy/hector_quadrotor_tutorial/devel/lib/libhector_gazebo_quadrotor_simple_controller.so: /usr/lib/x86_64-linux-gnu/libprotobuf.so
 /home/ubuntu/project/Scouty-Boy/hector_quadrotor_tutorial/devel/lib/libhector_gazebo_quadrotor_simple_controller.so: /usr/lib/x86_64-linux-gnu/libsdformat.so
 /home/ubuntu/project/Scouty-Boy/hector_quadrotor_tutorial/devel/lib/libhector_gazebo_quadrotor_simple_controller.so: /usr/lib/x86_64-linux-gnu/libignition-math2.so
-/home/ubuntu/project/Scouty-Boy/hector_quadrotor_tutorial/devel/lib/libhector_gazebo_quadrotor_simple_controller.so: /usr/lib/x86_64-linux-gnu/libOgreMain.so
-/home/ubuntu/project/Scouty-Boy/hector_quadrotor_tutorial/devel/lib/libhector_gazebo_quadrotor_simple_controller.so: /usr/lib/x86_64-linux-gnu/libOgreTerrain.so
-/home/ubuntu/project/Scouty-Boy/hector_quadrotor_tutorial/devel/lib/libhector_gazebo_quadrotor_simple_controller.so: /usr/lib/x86_64-linux-gnu/libOgrePaging.so
 /home/ubuntu/project/Scouty-Boy/hector_quadrotor_tutorial/devel/lib/libhector_gazebo_quadrotor_simple_controller.so: /opt/ros/kinetic/lib/libtf.so
 /home/ubuntu/project/Scouty-Boy/hector_quadrotor_tutorial/devel/lib/libhector_gazebo_quadrotor_simple_controller.so: /opt/ros/kinetic/lib/libtf2_ros.so
 /home/ubuntu/project/Scouty-Boy/hector_quadrotor_tutorial/devel/lib/libhector_gazebo_quadrotor_simple_controller.so: /opt/ros/kinetic/lib/libactionlib.so
