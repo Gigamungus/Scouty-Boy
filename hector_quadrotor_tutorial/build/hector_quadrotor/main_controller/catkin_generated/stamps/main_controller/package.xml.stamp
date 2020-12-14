@@ -1,0 +1,31 @@
+<package>
+  <name>main_controller</name>
+  <version>0.3.5</version>
+  <description>The main_controller package</description>
+
+  <maintainer email="michael_roberts@berkeley.edu">Michael Roberts</maintainer>
+
+
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>actionlib</build_depend>
+  <build_depend>geometry_msgs</build_depend>
+  <build_depend>hector_quadrotor_interface</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>sensor_msgs</build_depend>
+  <build_depend>geometry_msgs</build_depend>
+  <build_depend>hector_uav_msgs</build_depend>
+  <build_depend>tf2_geometry_msgs</build_depend>
+
+  <run_depend>actionlib</run_depend>
+  <run_depend>geometry_msgs</run_depend>
+  <run_depend>hector_uav_msgs</run_depend>
+  <run_depend>hector_quadrotor_interface</run_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>sensor_msgs</run_depend>
+  <run_depend>tf2_geometry_msgs</run_depend>
+
+
+</package>
