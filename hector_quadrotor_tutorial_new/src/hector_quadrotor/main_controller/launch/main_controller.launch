@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+
+<launch>
+  <arg name="control_mode" default="position"/>
+
+  <node name="main_controller" pkg="main_controller" type="main_controller_node" output="screen" />
+
+</launch>
