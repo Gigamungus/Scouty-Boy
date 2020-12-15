@@ -19,10 +19,14 @@
 #include <math.h>
 
 #define ROTATE_SPEED 144
-#define CEIL 10
+#define CEIL 2.5
+#define SIDE_DIST 1.2
+#define FRONT_DIST 1.5
 #define QUAT_CONV 114.591559026
-// 114.591559026
-// 57.2957795130
+#define RAD_CONV 57.295779513
+#define DROP_DIST 1
+#define MIN_HEIGHT 1
+
 float wFromDeg(float deg) {
   return cosf(deg / QUAT_CONV);
 }
@@ -53,6 +57,11 @@ typedef enum {
   LAND,
 } state_t;
 
+typedef enum {
+  LEFT,
+  RIGHT,
+} last_dir_t;
+
 void setOrientation(geometry_msgs::Pose *p, float angle) {
   p->orientation.x = 0;
   p->orientation.y = 0;
@@ -77,6 +86,9 @@ class MainController {
   float actual_angle;
   float wall_angle;
   float min_front;
+  float desired_altitude;
+  last_dir_t last_dir;
+  geometry_msgs::Pose initial_pose;
 public:
   MainController(void) {}
   
@@ -107,6 +119,7 @@ public:
     actual_angle = 0;
     wall_angle = 0;
     min_front = 1000000;
+    desired_altitude = 0;
   }
   
   void getPoseCallback(const geometry_msgs::PoseStampedConstPtr &pose_) {
@@ -123,8 +136,11 @@ public:
     
     setOrientation(&(new_pose.pose), angle);
     actual_angle = degFromWZ(pose.orientation.w, pose.orientation.z);
+    new_pose.pose.position.z = desired_altitude;
+    ROS_INFO("state: %d\n", state);
     switch (state) {
       case IDLE: {
+        //std::memcpy(&initial_pose, &pose, sizeof(geometry_msgs::Pose));
         state = TAKEOFF;
         break;
       }
@@ -132,7 +148,7 @@ public:
         if (new_pose.pose.position.z >= 0.9) {
           state = FIND_ANGLE;
         } else {
-          new_pose.pose.position.z = 1;
+          desired_altitude = 1;
           angle = 0;
         }
         break;
@@ -146,7 +162,6 @@ public:
           min_front = front_dist;
           wall_angle = actual_angle;
         }
-        new_pose.pose.position.z = 1;
         angle += ROTATE_SPEED * dt;
         break;
       }
@@ -160,47 +175,107 @@ public:
           state = MOVE_TO_WALL;
           break;
         }
-        new_pose.pose.position.z = 1;
         break;
       }
       case MOVE_TO_WALL: {
-        ROS_INFO("front dist: %f\n", front_dist);
         angle = wall_angle;
-        float dist = front_dist - 1;
-        if (dist > 2) {
-          dist = 2;
+        float dist = front_dist - FRONT_DIST;
+        if (dist > 0.2) {
+          dist = 0.2;
         }
-        if (dist > 0.9 && dist < 1.1) {
-          //state = MOVE_FAR_LEFT;
+        else if (dist < -0.2) {
+          dist = -0.2;
+        }
+        else if (abs(dist) < 0.1) {
+          state = MOVE_FAR_LEFT;
           break;
         }
-        new_pose.pose.position.z = 1;
-        new_pose.pose.position.x += dist * cosf(angle);
-        new_pose.pose.position.y += dist * sinf(angle);
+        new_pose.pose.position.x += dist * cosf(angle / RAD_CONV);
+        new_pose.pose.position.y += dist * sinf(angle / RAD_CONV);
         break;
       }
       case MOVE_FAR_LEFT: {
         angle = wall_angle;
-        float dist = left_dist - 0.5;
-        if (dist < 0.1) {
+        float dist = left_dist - SIDE_DIST;
+        if (dist > 0.2) {
+          dist = 0.2;
+        }
+        else if (dist < -0.2) {
+          dist = -0.2;
+        } 
+        else if (abs(dist) < 0.1) {
           state = MOVE_FAR_UP;
           break;
         }
-        new_pose.pose.position.z = 1;
-        new_pose.pose.position.x += dist * sinf(angle);
-        new_pose.pose.position.y += dist * cosf(angle);
+        new_pose.pose.position.x -= dist * sinf(angle / RAD_CONV);
+        new_pose.pose.position.y += dist * cosf(angle / RAD_CONV);
         break;
       }
       case MOVE_FAR_UP: {
+        if (new_pose.pose.position.z > CEIL - 0.1) {
+          last_dir = LEFT;
+          state = MOVE_RIGHT;
+          break;
+        }
+        desired_altitude = CEIL;
         break;
       }
       case MOVE_RIGHT: {
+        float dist = right_dist - SIDE_DIST;
+        if (dist > 0.2) {
+          dist = 0.2;
+        }
+        else if (dist < -0.2) {
+          dist = -0.2;
+        }
+        else if (abs(dist) < 0.1) {
+          if (desired_altitude < MIN_HEIGHT) {
+            state = LAND;
+            break;
+          }
+          desired_altitude -= DROP_DIST;
+          last_dir = RIGHT;
+          state = MOVE_DOWN;
+          break;
+        }
+        new_pose.pose.position.x += dist * sinf(angle / RAD_CONV);
+        new_pose.pose.position.y -= dist * cosf(angle / RAD_CONV);
         break;
       }
       case MOVE_DOWN: {
+        float dist = height - desired_altitude;
+        if (dist < 0.1) {
+          if (last_dir == RIGHT) {
+            state = MOVE_LEFT;
+            break;
+          } else {
+            state = MOVE_RIGHT;
+            break;
+          }
+        }
+        state = MOVE_DOWN;
         break;
       }
       case MOVE_LEFT: {
+        float dist = left_dist - SIDE_DIST;
+        if (dist > 0.2) {
+          dist = 0.2;
+        }
+        else if (dist < -0.2) {
+          dist = -0.2;
+        }
+        else if (abs(dist) < 0.1) {
+          if (desired_altitude < MIN_HEIGHT) {
+            state = LAND;
+            break;
+          }
+          desired_altitude -= DROP_DIST;
+          last_dir = LEFT;
+          state = MOVE_DOWN;
+          break;
+        }
+        new_pose.pose.position.x -= dist * sinf(angle / RAD_CONV);
+        new_pose.pose.position.y += dist * cosf(angle / RAD_CONV);
         break;
       }
       case LAND: {
