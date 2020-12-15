@@ -18,7 +18,7 @@
 #include <ros/subscriber.h>
 #include <math.h>
 
-#define ROTATE_SPEED 144
+#define ROTATE_SPEED 200
 #define CEIL 2.5
 #define SIDE_DIST 1.2
 #define FRONT_DIST 1.5
@@ -26,6 +26,7 @@
 #define RAD_CONV 57.295779513
 #define DROP_DIST 1
 #define MIN_HEIGHT 1
+#define TOLERANCE 0.4
 
 float wFromDeg(float deg) {
   return cosf(deg / QUAT_CONV);
@@ -88,7 +89,6 @@ class MainController {
   float min_front;
   float desired_altitude;
   last_dir_t last_dir;
-  geometry_msgs::Pose initial_pose;
 public:
   MainController(void) {}
   
@@ -137,10 +137,8 @@ public:
     setOrientation(&(new_pose.pose), angle);
     actual_angle = degFromWZ(pose.orientation.w, pose.orientation.z);
     new_pose.pose.position.z = desired_altitude;
-    ROS_INFO("state: %d\n", state);
     switch (state) {
       case IDLE: {
-        //std::memcpy(&initial_pose, &pose, sizeof(geometry_msgs::Pose));
         state = TAKEOFF;
         break;
       }
@@ -180,11 +178,11 @@ public:
       case MOVE_TO_WALL: {
         angle = wall_angle;
         float dist = front_dist - FRONT_DIST;
-        if (dist > 0.2) {
-          dist = 0.2;
+        if (dist > TOLERANCE) {
+          dist = TOLERANCE;
         }
-        else if (dist < -0.2) {
-          dist = -0.2;
+        else if (dist < -TOLERANCE) {
+          dist = -TOLERANCE;
         }
         else if (abs(dist) < 0.1) {
           state = MOVE_FAR_LEFT;
@@ -197,11 +195,11 @@ public:
       case MOVE_FAR_LEFT: {
         angle = wall_angle;
         float dist = left_dist - SIDE_DIST;
-        if (dist > 0.2) {
-          dist = 0.2;
+        if (dist > TOLERANCE) {
+          dist = TOLERANCE;
         }
-        else if (dist < -0.2) {
-          dist = -0.2;
+        else if (dist < -TOLERANCE) {
+          dist = -TOLERANCE;
         } 
         else if (abs(dist) < 0.1) {
           state = MOVE_FAR_UP;
@@ -222,11 +220,11 @@ public:
       }
       case MOVE_RIGHT: {
         float dist = right_dist - SIDE_DIST;
-        if (dist > 0.2) {
-          dist = 0.2;
+        if (dist > TOLERANCE) {
+          dist = TOLERANCE;
         }
-        else if (dist < -0.2) {
-          dist = -0.2;
+        else if (dist < -TOLERANCE) {
+          dist = -TOLERANCE;
         }
         else if (abs(dist) < 0.1) {
           if (desired_altitude < MIN_HEIGHT) {
@@ -258,11 +256,11 @@ public:
       }
       case MOVE_LEFT: {
         float dist = left_dist - SIDE_DIST;
-        if (dist > 0.2) {
-          dist = 0.2;
+        if (dist > TOLERANCE) {
+          dist = TOLERANCE;
         }
-        else if (dist < -0.2) {
-          dist = -0.2;
+        else if (dist < -TOLERANCE) {
+          dist = -TOLERANCE;
         }
         else if (abs(dist) < 0.1) {
           if (desired_altitude < MIN_HEIGHT) {
@@ -279,6 +277,7 @@ public:
         break;
       }
       case LAND: {
+        desired_altitude = 0;
         break;
       }
       default: {
