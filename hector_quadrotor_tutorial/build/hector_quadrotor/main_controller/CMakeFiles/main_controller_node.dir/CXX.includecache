@@ -643,6 +643,8 @@ hector_quadrotor_interface/quadrotor_interface.h
 -
 ros/subscriber.h
 -
+math.h
+-
 
 /opt/ros/kinetic/include/actionlib/action_definition.h
 
