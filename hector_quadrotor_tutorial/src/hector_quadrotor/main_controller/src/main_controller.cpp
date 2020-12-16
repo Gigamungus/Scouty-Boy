@@ -89,6 +89,7 @@ class MainController {
   float min_front;
   float desired_altitude;
   last_dir_t last_dir;
+  float true_start_angle;
 public:
   MainController(void) {}
   
@@ -145,6 +146,7 @@ public:
       case TAKEOFF: {
         if (new_pose.pose.position.z >= 0.9) {
           state = FIND_ANGLE;
+          true_start_angle = actual_angle;
         } else {
           desired_altitude = 1;
           angle = 0;
@@ -152,7 +154,7 @@ public:
         break;
       }
       case FIND_ANGLE: {
-        if (angle > 620) {
+        if (actual_angle - true_start_angle > 450) {
           state = ORIENT_ANGLE;
           break;
         }
@@ -160,12 +162,12 @@ public:
           min_front = front_dist;
           wall_angle = actual_angle;
         }
-        angle += ROTATE_SPEED * dt;
+        angle = actual_angle + 80;
         break;
       }
       case ORIENT_ANGLE: {
-        if (abs(actual_angle - wall_angle) > 20) {
-          angle = actual_angle > wall_angle ? actual_angle - 20 : actual_angle + 20;
+        if (abs(actual_angle - wall_angle) > 80) {
+          angle = actual_angle > wall_angle ? actual_angle - 80 : actual_angle + 90;
         } else {
           angle = wall_angle;
         }
