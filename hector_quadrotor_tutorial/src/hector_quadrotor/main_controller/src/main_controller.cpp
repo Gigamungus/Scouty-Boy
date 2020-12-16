@@ -167,7 +167,7 @@ public:
       }
       case ORIENT_ANGLE: {
         if (abs(actual_angle - wall_angle) > 80) {
-          angle = actual_angle > wall_angle ? actual_angle - 80 : actual_angle + 90;
+          angle = actual_angle > wall_angle ? actual_angle - 80 : actual_angle + 80;
         } else {
           angle = wall_angle;
         }
